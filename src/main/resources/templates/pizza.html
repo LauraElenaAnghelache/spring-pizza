@@ -36,9 +36,9 @@
 						<td class="table-danger" th:text="${p.getDescrizione()}"></td>
 						<td class="table-warning" th:text="${p.getPrezzo} + '€'"></td>
 						<td class="table-dark">
-							<a class="btn btn-primary" title="Cancella" th:href="@{|/delete/${p.getId()}|}"
+							<a class="btn btn-warning" title="Cancella" th:href="@{|/delete/${p.getId()}|}"
 								onclick="return confirm('Sei sicuro?') "><i class="fa-solid fa-trash-can"></i></a>
-							<a class="btn btn-primary" title="Modifica" th:href="@{|/update/${p.getId()}|}"
+							<a class="btn btn-warning" title="Modifica" th:href="@{|/update/${p.getId()}|}"
 								onclick="return confirm('Sei sicuro?') "><i class="fa-solid fa-pencil"></i></a>
 						</td>
 					</tr>
