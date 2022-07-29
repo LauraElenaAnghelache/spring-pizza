@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <th:block th:replace="fragments :: src-head"></th:block>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <title>Spring Pizza</title>
+</head>
+<body>
+    <th:block th:replace="fragments :: navbar(home)"></th:block> 
+    <section>
+    <p class="h1 text-center text-light fst-italic pt-3 pb-3">PIZZERIA PRIMAVERA</p>
+    <div class="container d-flex justify-content-centerbg py-2 bg-body rounded">
+    <body>
+</body>
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner bg-danger">
+    <div class="carousel-item active">
+      <img src="/img/Pizza.jpg" class="d-block w-100 rounded shadow"alt="...">
+    </div>
+     <div class="carousel-item">
+      <img src="/img/Pizza2.jpg" class="d-block w-100 rounded shadow" alt="...">
+    </div>
+     <div class="carousel-item">
+      <img src="/img/pizzeria.jpg" class="d-block w-100 rounded shadow" alt="...">
+    </div>
+  
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+    </div>
+    </section>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> 
+</body>
+</html>

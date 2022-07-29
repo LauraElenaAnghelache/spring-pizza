@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+    <th:block th:replace="fragments :: src-head"></th:block>
+	<title>Le nostre Pizze</title>
+  </head>
+  
+  <body>
+    <th:block th:replace="fragments :: navbar(pizza)"></th:block>
+
+	  <div class="container text-light fst-italic fw-bold">
+		<h1 class="text-center pt-5 pb-3">Ecco la lista delle nostre pizze</h1>
+		<div style="text-align:center;">
+		<a class="btn btn-warning mb-5 fw-bold" th:href="@{/edit}">Aggiungi Pizza</a>
+		<div th:if="${#lists.isEmpty(PizzaList)}">
+		<h3>Lista momentaneamente vuota! Vai su Aggiungi una nuova Pizza per aggiungerla al Menu</h3>
+		</div>
+
+		<th:block th:if="${successMessage != null && successMessage != ''}">
+			<div class="alert alert-success" th:text="${successMessage}"></div>
+		</th:block>
+		<div th:unless="${#lists.isEmpty(PizzaList)}">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col" class="table-dark">Nome</th>
+						<th scope="col" class="table-dark">Descrizione</th>
+						<th scope="col" class="table-dark">Prezzo</th>
+						<th scope="col" class="table-dark">Azioni</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="p : ${PizzaList} ">
+						<td class="table-success" th:text="${p.getNome()}"></td>
+						<td class="table-danger" th:text="${p.getDescrizione()}"></td>
+						<td class="table-warning" th:text="${p.getPrezzo} + '€'"></td>
+						<td class="table-dark">
+							<a class="btn btn-primary" title="Cancella" th:href="@{|/delete/${p.getId()}|}"
+								onclick="return confirm('Sei sicuro?') "><i class="fa-solid fa-trash-can"></i></a>
+							<a class="btn btn-primary" title="Modifica" th:href="@{|/update/${p.getId()}|}"
+								onclick="return confirm('Sei sicuro?') "><i class="fa-solid fa-pencil"></i></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	</div>
+	</div>
+</body>
+
+</html>
