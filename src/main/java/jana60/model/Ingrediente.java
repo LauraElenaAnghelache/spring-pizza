@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table (name = "ingredienti")
+@Table (name = "ingrediente")
 public class Ingrediente 
 {
 	

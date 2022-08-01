@@ -26,32 +26,32 @@ public class IngredientiController {
 	@Autowired
 	private IngredientiRepository repo;
 
-	@GetMapping("/list")
+	@GetMapping("/ingrediente'")
 	public String pizza(Model model) {
 		List<Ingrediente> IngredienteList = (List<Ingrediente>) repo.findAll();
 		model.addAttribute("IngredienteList", IngredienteList);
-		return "/ingrediente/list";
+		return "/ingrediente";
 	}
 
-	@GetMapping("/edit")
+	@GetMapping
 	public String pizzaForm(Model model) {
-		model.addAttribute("listaIngrediente", repo.findAllByOrderByNome());
+		model.addAttribute("ingrediente", repo.findAllByOrderByNome());
 		model.addAttribute("newIngrediente", new Ingrediente());
-		return "/ingrediente/edit";
+		return "/ingrediente";
 	}
 
-	@PostMapping("/edit")
+	@PostMapping("/save")
 	public String saveIngrediente(@Valid @ModelAttribute("newIngrediente") Ingrediente formIngrediente,
 			BindingResult br, Model model) {
 		if (br.hasErrors()) {
-			// ricarico la pagina
+			
 			model.addAttribute("ingrediente", repo.findAllByOrderByNome());
-			return "/ingrediente/edit";
+			return "redirect/ingrediente";
 
 		} else {
-			// salvo la category
+			
 			repo.save(formIngrediente);
-			return "redirect:/ingrediente/list";
+			return "redirect:/ingrediente";
 		}
 	}
 	@GetMapping("/update/{id}")
@@ -60,7 +60,7 @@ public class IngredientiController {
 		if (result.isPresent()) {
 			model.addAttribute("newIngrediente", result.get());
 			repo.save(result.get());
-			return "ingrediente/edit";
+			return "/ingrediente";
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
 					"Ingrediente con id " + ingredienteId + "Non esiste");

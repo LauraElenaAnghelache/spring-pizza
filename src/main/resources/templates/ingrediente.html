@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+   <link th:href="@{/css/style.css}" rel="stylesheet">
+    <th:block th:replace="fragments :: src-head"></th:block>
+    <title>Ingrediente</title>
+  </head>
+  <body>
+    <th:block th:replace="fragments :: navbar(ingrediente)"></th:block>
+    <div class="container fw-bold fst-italic pt-5">
+    	<h1 class="text-center text-light">Ingredienti</h1>
+    	</hr>
+    	<form
+    	    id="form-ingrediente"
+    	    th:object="${newIngrediente}"
+    	    th:action="@{/ingrediente/save}"
+    	    method="POST"
+    	    >
+    	    <div class="input-group mb-3 mt-5">
+  <input th:field="*{nome}" type="text" class="form-control" placeholder="Aggiungi Ingrediente" aria-label="Aggiungi Ingrediente" aria-describedby="button-addon2">
+  <button class="btn btn-warning" type="submit" id="button-addon2">Save</button>
+</div>
+ <div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+  					<ul>
+  						<li th:each="err : ${#fields.errors('nome')}" th:text="${err}">
+  					</ul>
+  				</div>    
+    	</form>
+    	<ul class="list-group" th:if="${ingrediente.size() > 0}">
+    	<li class="list-group-item active" th:each="ing :${ingrediente}">
+    	<span th:text="${ing.name}"></span>
+    	</li>
+    	</ul>
+    	<div class="alert alert-warning my-5" th:unless="${ingrediente.size() > 0}">
+    	<h3> Non ci sono ancore degli ingredienti</h3>
+    </div>
+</body>
+</html>

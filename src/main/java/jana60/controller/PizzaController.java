@@ -38,14 +38,14 @@ public class PizzaController {
 
 	@GetMapping("/edit")
 	public String pizzaForm(Model model) {
-		model.addAttribute("pizza", new Pizza());
+		model.addAttribute("newPizza", new Pizza());
 		return "edit";
 	}
 
 	
-	@PostMapping("/edit")
-	public String save(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult br) {
-		boolean hasErrors = br.hasErrors();
+	@PostMapping("/save")
+	public String save(@Valid @ModelAttribute("newPizza") Pizza formPizza, BindingResult br) {
+        boolean hasErrors = br.hasErrors();
 		boolean validNome = true;
 		if (formPizza.getId() != null) {
 			Pizza pizzaOld = repo.findById(formPizza.getId()).get();
@@ -59,7 +59,7 @@ public class PizzaController {
 
 		}
 		if (hasErrors)
-			return "/edit";
+			return "redirect:/pizza";
 
 		else {
 
@@ -67,7 +67,6 @@ public class PizzaController {
 			return "redirect:/pizza";
 
 		}
-
 	}
 
 	@GetMapping("/delete/{id}")

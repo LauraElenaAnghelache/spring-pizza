@@ -1,35 +1,30 @@
 <!DOCTYPE html>
 <html lang="it">
-
-  <head>
+<head>
    <link th:href="@{/css/style.css}" rel="stylesheet">
     <th:block th:replace="fragments :: src-head"></th:block>
 	<title>Aggiungi Pizza</title>
   </head>
-  
   <body>
-    <th:block th:replace="fragments :: navbar(current)"></th:block>
+    <th:block th:replace="fragments :: navbar(edit)"></th:block>
     <div class="container fw-bold fst-italic pt-5">
     	<h1 class="text-center text-light">Inserisci i seguenti dati</h1>
-    	
     	<form
   			id="form-pizza"
-  			th:object="${pizza}"
-  			th:action="@{/edit}"
+  			th:object="${newPizza}"
+  			th:action="@{/save}"
   			method="POST"
   		>
   		<input type="hidden" th:field="*{id}">
   		<div class="form-floating mb-3 mt-3 has-validation">
-  <input type="text" class="form-control" th:field="*{nome}" id="nome" th:errorClass="is-invalid" placeholder="Pizza Margherita">
+  <input type="text" class="form-control" th:field="*{nome}" id="nome" th:errorClass="is-invalid" placeholder="">
   <label for="floatingInput">Nome Pizza</label>
         <div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
   					<ul>
   						<li th:each="err : ${#fields.errors('nome')}" th:text="${err}">
   					</ul>
-  				</div>
-      
+  				</div>    
 </div>
-
 <div class="form-floating mt-3 has-validation">
   <input type="text" class="form-control" th:field="*{descrizione}" id="descrizione" th:errorClass="is-invalid" placeholder="Descrizione">
   <label for="floatingPassword">Descrizione</label>
@@ -40,7 +35,7 @@
   				</div>
 </div>
 <div class="form-floating mt-3 has-validation">
-  <input type="number" class="form-control" th:field="*{prezzo}" id="prezzo" th:errorClass="is-invalid" placeholder="Prezzo">
+  <input type ="number" class="form-control" th:field="*{prezzo}" id="prezzo" th:errorClass="is-invalid" placeholder="Prezzo">
   <label for="floatingPassword">Prezzo</label>
   <div th:if="${#fields.hasErrors('prezzo')}" class="invalid-feedback">
   					<ul>
@@ -48,7 +43,21 @@
   					</ul>
   				</div>
 </div>
-<div>
+<div class="col-4 mt-3 bg-light border-radius px-2 fw-bolder">
+<h5>Ingredienti</h5>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+  <label class="form-check-label" for="flexCheckChecked">
+    Checked checkbox
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+  <label class="form-check-label" for="flexCheckChecked">
+    Altra checkbox
+  </label>
+</div>
+</div>
                 <div style="text-align:center;">
   				<button type="submit" class="btn btn-warning mt-3 text-light fw-bold">Save</button>
   				<a class="btn btn-warning mt-3 text-light fw-bold" href="/">Delete</a>
